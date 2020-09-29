@@ -16,9 +16,9 @@ struct point
 {
     int x, y, z;
     point(){
-        x = 0;
-        y = 0;
-        z = 0;
+        x = -1;
+        y = -1;
+        z = -1;
     }
     point(int a, int b, int c){
         x = a;
@@ -66,9 +66,9 @@ class octree
            z < TopLeftFront->z || z > BottomRightBack->z)
             return 0;
 
-        int midx = (TopLeftFront->x + BottomRightBack->x) >> 1;
-        int midy = (TopLeftFront->y + BottomRightBack->y) >> 1;
-        int midz = (TopLeftFront->z + BottomRightBack->z) >> 1;
+        int midx = (TopLeftFront->x + BottomRightBack->x) >>1;
+        int midy = (TopLeftFront->y + BottomRightBack->y) >>1;
+        int midz = (TopLeftFront->z + BottomRightBack->z) >>1;
 
         int pos = -1;
         if(x <= midx)
@@ -145,9 +145,9 @@ class octree
            z < TopLeftFront->z || z > BottomRightBack->z)
            return;
         
-        int midx = (TopLeftFront->x + BottomRightBack->x) >> 1;
-        int midy = (TopLeftFront->y + BottomRightBack->y) >> 1;
-        int midz = (TopLeftFront->z + BottomRightBack->z) >> 1;
+        int midx = (TopLeftFront->x + BottomRightBack->x) >>1;
+        int midy = (TopLeftFront->y + BottomRightBack->y) >>1;
+        int midz = (TopLeftFront->z + BottomRightBack->z) >>1;
 
         int pos = -1;
         if(x <= midx)
@@ -273,11 +273,11 @@ class octree
 int main()
 {
     cout<<"HEllo world"<<endl;
-    octree tree(1, 1, 1, 4, 4, 4);
-    cout << "Insert (3, 3, 3)\n";
-    tree.insert(3, 3, 3);
-    cout << "Insert (3, 3, 4)\n";
-    tree.insert(3, 3, 4);
+    octree tree(1, 1, 1, 5, 5, 5);
+    cout << "Insert (1, 2, 3)\n";
+    tree.insert(1, 2, 3);
+    cout << "Insert (1, 2, 3)\n";
+    tree.insert(6, 5, 5);
 
     cout << "Find (3, 3, 3):\n";
     cout << (tree.find(3, 3, 3) ? "True\n" : "False\n");
