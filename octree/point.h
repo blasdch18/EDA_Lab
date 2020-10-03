@@ -17,6 +17,11 @@ public:
         y = b;
         z = c;
     }
+    point(float a,float b){
+            x=a;
+            y=b;
+            z=0.0;
+        }
 };
 
 #endif // POINT_H

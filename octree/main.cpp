@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 
     QVector<float> data;
 
-    QString filename = "~/points/rex.txt";
+    QString filename = "/home/hp/qt/octree/points/rex.txt";
 
     Reading(filename, data);
     qDebug() <<"points: "<< data.size()/3;
@@ -49,6 +49,10 @@ int main(int argc, char *argv[])
         //w.tree->insert
     }
 
+    w.paintGL();
+
+    w.setTitle("Octree QT");
+    w.resize(680,680);
     w.show();
     return a.exec();
 }

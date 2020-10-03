@@ -20,20 +20,28 @@ using namespace std;
 
 class octree
 {
+public:
     point* punto;
     point *TopLeftFront, *BottomRightBack;
     vector<octree*> children;
+    point min,max;
 
-    public:
     octree()
     {
         punto = new point();
+        min=point(-1,-1,-1);
+        max=point(1,1,1);
     }
-    octree(int x, int y, int z)
+    octree(point a, point b){
+            max = a;
+            min = b;
+
+        }
+    octree(float x, float y, float z)
     {
         punto = new point(x, y, z);
     }
-    octree(int x1, int y1, int z1, int x2, int y2, int z2)
+    octree(float x1, float y1, float z1, float x2, float y2, float z2)
     {
         if(x2 < x1 || y2 < y1 || z2 < z1)
         {
@@ -50,7 +58,7 @@ class octree
             children[i] = new octree();
         }
     }
-    bool find(int x, int y, int z)
+    bool find(float x, float y, float z)
     {
         if(x < TopLeftFront->x || x > BottomRightBack->x ||
            y < TopLeftFront->y || y > BottomRightBack->y ||
@@ -129,7 +137,7 @@ class octree
         return 0;
     }
 
-    void insert ( int x, int y, int z)
+    void insert ( float x, float y, float z)
     {
         if(x < TopLeftFront->x || x > BottomRightBack->x ||
            y < TopLeftFront->y || y > BottomRightBack->y ||
@@ -206,9 +214,9 @@ class octree
         }
         else
         {
-            int x_ = children[pos]->punto->x;
-            int y_ = children[pos]->punto->y;
-            int z_ = children[pos]->punto->z;
+            float x_ = children[pos]->punto->x;
+            float y_ = children[pos]->punto->y;
+            float z_ = children[pos]->punto->z;
             delete children[pos];
             children[pos] = nullptr;
 
